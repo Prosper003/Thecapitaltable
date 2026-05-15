@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Capital Table — Business, Startups & Innovation in Africa</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="The Capital Table is Africa's premier publication for business, startups, AI, and innovation. Covering Nigerian founders, African markets, and the future of the continent's economy.">
+  <meta name="keywords" content="African startups, Nigerian business, Africa tech, AI Nigeria, Nigerian founders, African economy, startup funding Africa">
+  <meta name="author" content="The Capital Table">
+  <link rel="canonical" href="https://thecapitaltable.blog/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Capital Table">
+  <meta property="og:title" content="The Capital Table — Business, Startups & Innovation in Africa">
+  <meta property="og:description" content="Africa's premier publication for business, startups, AI, and innovation.">
+  <meta property="og:url" content="https://thecapitaltable.blog/">
+  <meta property="og:image" content="https://thecapitaltable.blog/assets/images/og/og-default.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thecapitaltable">
+  <meta name="twitter:title" content="The Capital Table">
+  <meta name="twitter:description" content="Business • Startups • AI • Africa's Future">
+  <meta name="twitter:image" content="https://thecapitaltable.blog/assets/images/og/og-default.jpg">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "The Capital Table",
+    "alternateName": "TCT",
+    "url": "https://thecapitaltable.blog",
+    "logo": "https://thecapitaltable.blog/assets/images/logo/wordmark.png",
+    "sameAs": [
+      "https://instagram.com/thecapitaltable",
+      "https://x.com/thecapitaltable"
+    ],
+    "description": "Africa's premier publication for business, startups, AI, and innovation.",
+    "foundingDate": "2026",
+    "areaServed": "Africa"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/cards.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
+</head>
+
+<body data-page="home">
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand" aria-label="The Capital Table — Home">
+        <div class="nav-monogram" aria-hidden="true">
+          <span>TCT</span>
+        </div>
+        <span class="nav-wordmark">The Capital Table</span>
+      </a>
+
+      <div class="nav-right">
+        <span class="nav-date" id="nav-date" aria-live="polite"></span>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       MENU OVERLAY + DRAWER
+       ============================================ -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+  <div class="menu-drawer" id="menu-drawer" role="dialog" aria-label="Site navigation" aria-modal="true">
+    <div class="menu-drawer-header">
+      <span class="menu-drawer-title">Navigate</span>
+      <button class="menu-close" id="menu-close" aria-label="Close menu">✕</button>
+    </div>
+
+    <ul class="menu-nav-list" role="list">
+      <li class="menu-nav-item" data-category="Business" role="listitem">
+        <span class="menu-nav-label">Business</span>
+      </li>
+      <li class="menu-nav-item" data-category="Startups" role="listitem">
+        <span class="menu-nav-label">Startups</span>
+      </li>
+      <li class="menu-nav-item" data-category="Technology" role="listitem">
+        <span class="menu-nav-label">Technology</span>
+      </li>
+      <li class="menu-nav-item" data-category="AI" role="listitem">
+        <span class="menu-nav-label">AI</span>
+      </li>
+      <li class="menu-nav-item" data-category="Finance" role="listitem">
+        <span class="menu-nav-label">Finance</span>
+      </li>
+      <li class="menu-nav-item" data-category="Founders" role="listitem">
+        <span class="menu-nav-label">Founders</span>
+      </li>
+      <li class="menu-nav-item" data-category="Innovation" role="listitem">
+        <span class="menu-nav-label">Innovation</span>
+      </li>
+    </ul>
+
+    <div class="menu-footer">
+      <p class="menu-tagline">Business · Startups · AI<br>Africa's Future</p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       MAIN CONTENT
+       ============================================ -->
+  <main class="main-content">
+
+    <!-- Ticker Bar -->
+    <div class="ticker-bar" aria-label="Latest headlines">
+      <div class="ticker-inner">
+        <span class="ticker-label">Latest</span>
+        <div class="ticker-divider"></div>
+        <span class="ticker-text" id="ticker-text">Loading headlines…</span>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" aria-label="Featured articles" id="hero-section">
+      <!-- Populated by JS -->
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-section" role="navigation" aria-label="Filter articles by category">
+      <div class="filter-inner" id="filter-bar">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Latest Articles Grid -->
+    <section class="articles-section" aria-label="Latest articles">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-title">Latest</span>
+          <span class="section-link" onclick="window.location.href='category.html?cat=All'">View all →</span>
+        </div>
+        <div id="articles-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Strip -->
+    <section class="about-strip" aria-label="About The Capital Table">
+      <div class="about-inner">
+        <div class="about-eyebrow">About</div>
+        <p class="about-statement">"Africa's story deserves a sharper lens."</p>
+        <p class="about-sub">
+          The Capital Table is an independent media platform covering business, startups,
+          artificial intelligence, and economic innovation across Africa — with a particular
+          focus on Nigeria's founder ecosystem.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div>
+            <div class="footer-brand-name">The Capital Table</div>
+            <p class="footer-brand-tag">Business · Startups · AI<br>Africa's Future</p>
+          </div>
+          <div>
+            <div class="footer-col-title">Topics</div>
+            <ul class="footer-links">
+              <li><span class="footer-link" onclick="window.location.href='category.html?cat=Business'">Business</span></li>
+              <li><span class="footer-link" onclick="window.location.href='category.html?cat=Startups'">Startups</span></li>
+              <li><span class="footer-link" onclick="window.location.href='category.html?cat=AI'">AI</span></li>
+              <li><span class="footer-link" onclick="window.location.href='category.html?cat=Finance'">Finance</span></li>
+              <li><span class="footer-link" onclick="window.location.href='category.html?cat=Founders'">Founders</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Connect</div>
+            <ul class="footer-links">
+              <li><a class="footer-link" href="https://instagram.com/thecapitaltable" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a class="footer-link" href="https://x.com/thecapitaltable" target="_blank" rel="noopener">X (Twitter)</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">© 2026 The Capital Table. All rights reserved.</p>
+          <div class="footer-social">
+            <a class="footer-social-link" href="https://instagram.com/thecapitaltable" target="_blank" rel="noopener">Instagram</a>
+            <a class="footer-social-link" href="https://x.com/thecapitaltable" target="_blank" rel="noopener">X</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ============================================
+       ARTICLE MODAL PLATFORM
+       ============================================ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Article reader" aria-hidden="true">
+    <div class="modal-platform">
+
+      <!-- Read progress bar -->
+      <div class="modal-read-progress" id="modal-read-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+      <!-- Top bar -->
+      <div class="modal-topbar">
+        <div class="modal-topbar-left">
+          <span class="modal-pub-name">The Capital Table</span>
+          <span style="color:var(--accent);opacity:0.4;">·</span>
+          <span class="modal-category" id="modal-category"></span>
+        </div>
+        <button class="modal-close" id="modal-close-btn" aria-label="Close article">✕</button>
+      </div>
+
+      <!-- Scrollable body -->
+      <div class="modal-body" id="modal-body">
+        <div id="modal-content">
+          <!-- Populated by modal.js -->
+        </div>
+      </div>
+
+      <!-- Action bar -->
+      <div class="modal-actions">
+        <div class="modal-action-group">
+          <button class="modal-action-btn" id="modal-like-btn" aria-label="Like this article">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <span class="like-text">Like</span>
+          </button>
+          <button class="modal-action-btn" id="modal-share-btn" aria-label="Share this article">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            <span>Share</span>
+          </button>
+        </div>
+        <span class="modal-progress" id="modal-progress-text">0%</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/articles.js" defer></script>
+  <script src="assets/js/modal.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+
+</body>
+</html>
