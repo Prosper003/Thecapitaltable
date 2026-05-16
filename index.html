@@ -65,8 +65,10 @@ img{width:100%;display:block;object-fit:cover}
    ============================================= */
 .header{
   background:var(--charcoal);
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
+  right:0;
   z-index:900;
   border-bottom:1px solid var(--dark-line);
 }
@@ -223,7 +225,7 @@ img{width:100%;display:block;object-fit:cover}
 /* =============================================
    BODY
    ============================================= */
-.body-wrap{background:var(--body-bg)}
+.body-wrap{background:var(--body-bg);padding-top:99px}
 
 /* Trending bar */
 .trending-bar{
