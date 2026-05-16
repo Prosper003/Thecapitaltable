@@ -64,13 +64,16 @@ img{width:100%;display:block;object-fit:cover}
    HEADER — full charcoal
    ============================================= */
 .header{
-  background:#0B0B0B;
+  background-color:#0B0B0B !important;
   position:fixed;
   top:0;
   left:0;
   right:0;
   z-index:900;
   border-bottom:1px solid #2A2A2A;
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+  will-change:transform;
 }
 
 /* Top row: logo + hamburger */
