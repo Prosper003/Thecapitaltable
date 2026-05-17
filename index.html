@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Capital Table</title>
+<meta name="description" content="Africa's premier publication for business, startups, AI, and innovation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================
+   RESET & BASE
+   ===================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f5f5;
+  color: #1a1a1a;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; background: none; }
+img { max-width: 100%; display: block; }
+
+/* =====================
+   HEADER
+   ===================== */
+#site-header {
+  background-color: #0B0B0B;
+  width: 100%;
+  border-bottom: 1px solid #222;
+}
+
+.header-row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.brand-box {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #444;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-box span {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.brand-info { display: flex; flex-direction: column; gap: 2px; }
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.brand-tagline {
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 0.03em;
+}
+
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.menu-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.menu-btn.open span:nth-child(2) { opacity: 0; }
+.menu-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.header-row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  border-top: 1px solid #1a1a1a;
+}
+
+.header-date { font-size: 11px; color: #666; }
+.header-founder { font-size: 11px; color: #666; }
+.header-founder a { color: #8B5A2B; }
+
+/* =====================
+   DRAWER
+   ===================== */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+}
+.drawer-overlay.show { display: block; }
+
+.drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: 270px;
+  height: 100%;
+  background-color: #0B0B0B;
+  border-left: 1px solid #222;
+  z-index: 101;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+.drawer.show { transform: translateX(0); }
+
+.drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.drawer-logo {
+  width: 34px; height: 34px;
+  border: 1.5px solid #333;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+}
+.drawer-logo span {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; font-weight: 600; color: #fff;
+}
+
+.drawer-x {
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.drawer-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 22px 20px 14px;
+  border-bottom: 1px solid #1a1a1a;
+  letter-spacing: 0.05em;
+}
+
+.drawer-list { flex: 1; overflow-y: auto; padding: 0 20px; }
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #161616;
+  cursor: pointer;
+}
+.drawer-item:last-child { border-bottom: none; }
+
+.drawer-item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #777;
+  transition: color 0.2s;
+}
+.drawer-item:hover .drawer-item-name { color: #ffffff; }
+.drawer-arrow { color: #8B5A2B; font-size: 14px; opacity: 0; transition: opacity 0.2s; }
+.drawer-item:hover .drawer-arrow { opacity: 1; }
+
+.drawer-foot {
+  padding: 18px 20px;
+  border-top: 1px solid #1a1a1a;
+}
+.drawer-foot p { font-size: 11px; color: #444; line-height: 1.9; }
+
+/* =====================
+   TRENDING BAR
+   ===================== */
+.trending-bar {
+  background-color: #ebebeb;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 20px;
+  overflow: hidden;
+}
+.trending-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.trending-items {
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  flex: 1;
+}
+.trending-item {
+  font-size: 11px;
+  color: #777;
+  white-space: nowrap;
+  padding: 0 12px 0 0;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================
+   HERO
+   ===================== */
+.hero-section {
+  padding: 36px 20px 32px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f5f5f5;
+}
+
+.hero-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero-cat {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8B5A2B;
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: #6b6b6b;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  font-weight: 300;
+}
+
+.hero-meta {
+  font-size: 11px;
+  color: #6b6b6b;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.hero-meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+}
+
+.hero-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+.hero-cat-below {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin-top: 12px;
+}
+
+/* =====================
+   ARTICLES SECTION
+   ===================== */
+.articles-section {
+  padding: 0 20px 48px;
+  background-color: #f5f5f5;
+}
+
+.articles-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 16px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.articles-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.articles-label::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 1.5px;
+  background-color: #8B5A2B;
+}
+
+.filter-row {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filter-row::-webkit-scrollbar { display: none; }
+
+.f-btn {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  color: #777;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.f-btn:hover { color: #1a1a1a; border-color: #ccc; }
+.f-btn.on { color: #1a1a1a; border-color: #8B5A2B; background: rgba(139,90,43,0.06); }
+
+/* Article item */
+.art-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid #e8e8e8;
+  cursor: pointer;
+}
+.art-item:hover { background-color: #efefef; }
+.art-item:last-child { border-bottom: none; }
+
+.art-thumb {
+  width: 120px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 2px;
+  background-color: #ddd;
+  display: block;
+  flex-shrink: 0;
+}
+
+.art-right { display: flex; flex-direction: column; gap: 5px; }
+
+.art-cat {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8B5A2B;
+}
+
+.art-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1a1a1a;
+}
+
+.art-excerpt {
+  font-size: 12px;
+  color: #6b6b6b;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.art-date {
+  font-size: 11px;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* Load more */
+.load-more-wrap { text-align: center; padding: 28px 0 0; }
+.load-more-btn {
+  padding: 11px 28px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #777;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.load-more-btn:hover { color: #1a1a1a; border-color: #999; }
+.load-more-btn.gone { display: none; }
+
+/* =====================
+   ABOUT
+   ===================== */
+.about-section {
+  background-color: #ebebeb;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 52px 20px;
+  text-align: center;
+}
+.about-inner { max-width: 540px; margin: 0 auto; }
+.about-eye {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8B5A2B;
+  margin-bottom: 14px;
+}
+.about-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+}
+.about-desc { font-size: 14px; color: #6b6b6b; line-height: 1.8; }
+
+/* =====================
+   FOOTER
+   ===================== */
+#site-footer {
+  background-color: #0B0B0B;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid #222;
+}
+.foot-copy { font-size: 12px; color: #444; }
+.foot-links { display: flex; gap: 18px; }
+.foot-link { font-size: 12px; color: #444; cursor: pointer; transition: color 0.2s; }
+.foot-link:hover { color: #ffffff; }
+
+/* =====================
+   MODAL
+   ===================== */
+.modal-bg {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-bg.show { display: flex; }
+
+.modal-box {
+  background-color: #F5F0E8;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Progress */
+.modal-prog-wrap {
+  height: 2px;
+  background: transparent;
+  border-radius: 4px 4px 0 0;
+  flex-shrink: 0;
+  position: relative;
+}
+.modal-prog-bar {
+  height: 100%;
+  background-color: #8B5A2B;
+  width: 0%;
+  transition: width 0.1s linear;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Modal top bar */
+.modal-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 20px;
+  border-bottom: 1px solid #D8D2C8;
+  flex-shrink: 0;
+}
+.modal-pub-info { display: flex; align-items: center; gap: 8px; }
+.modal-pub-name {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #999;
+}
+.modal-pub-sep { color: #8B5A2B; opacity: 0.4; }
+.modal-pub-cat {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #8B5A2B;
+}
+.modal-close-btn {
+  width: 28px; height: 28px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  border: none;
+  transition: background 0.2s;
+}
+.modal-close-btn:hover { background: rgba(0,0,0,0.15); }
+
+/* Modal scroll area */
+.modal-scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.modal-scroll::-webkit-scrollbar { width: 3px; }
+.modal-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); }
+
+.modal-fade-t {
+  position: sticky; top: 0;
+  height: 28px;
+  background: linear-gradient(to bottom, #F5F0E8, transparent);
+  pointer-events: none;
+}
+.modal-fade-b {
+  position: sticky; bottom: 0;
+  height: 36px;
+  background: linear-gradient(to top, #F5F0E8, transparent);
+  pointer-events: none;
+}
+
+/* Modal article */
+.modal-article { padding: 20px 28px 8px; }
+.m-cat {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: #8B5A2B; margin-bottom: 14px;
+}
+.m-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  line-height: 1.2; color: #1a1a1a;
+  margin-bottom: 10px;
+}
+.m-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-style: italic;
+  color: #999; line-height: 1.55;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #D8D2C8;
+}
+.m-meta {
+  font-size: 11px; color: #999;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.m-meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: #D8D2C8;
+  display: inline-block;
+}
+.m-hook {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-style: italic;
+  line-height: 1.78; color: #1a1a1a;
+  border-top: 2px solid #8B5A2B;
+  border-bottom: 2px solid #8B5A2B;
+  padding: 14px 0; margin-bottom: 22px;
+}
+.m-section { margin-bottom: 20px; }
+.m-sec-head {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8B5A2B; margin-bottom: 8px;
+}
+.m-sec-body { font-size: 15px; line-height: 1.85; color: #1a1a1a; }
+.m-end {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-style: italic;
+  color: #999; line-height: 1.8;
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid #D8D2C8;
+  margin-bottom: 8px;
+}
+
+/* Modal action bar */
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-top: 1px solid #D8D2C8;
+  flex-shrink: 0;
+}
+.modal-act-left { display: flex; gap: 8px; }
+.act-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid rgba(0,0,0,0.13);
+  border-radius: 2px;
+  font-size: 12px; font-weight: 500;
+  color: #888; background: transparent;
+  cursor: pointer; transition: all 0.2s;
+}
+.act-btn:hover { background: rgba(0,0,0,0.04); color: #1a1a1a; }
+.act-btn.liked { color: #8B5A2B; border-color: #8B5A2B; background: rgba(139,90,43,0.06); }
+.act-btn svg { width: 13px; height: 13px; stroke-width: 1.5; flex-shrink: 0; }
+.act-btn.liked svg { fill: #8B5A2B; stroke: #8B5A2B; }
+.modal-pct { font-size: 11px; color: #bbb; }
+
+/* =====================
+   MOBILE
+   ===================== */
+@media (max-width: 480px) {
+  .hero-title { font-size: 24px; }
+  .modal-bg { padding: 0; align-items: flex-end; }
+  .modal-box {
+    max-width: 100%; max-height: 92vh;
+    border-radius: 12px 12px 0 0;
+    animation: slideUpMob 0.4s ease;
+  }
+  @keyframes slideUpMob {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  .modal-article { padding: 16px 18px 8px; }
+  .m-title { font-size: 20px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="site-header">
+  <div class="header-row1">
+    <div class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="brand-box"><span>TCT</span></div>
+      <div class="brand-info">
+        <span class="brand-name">The Capital Table</span>
+        <span class="brand-tagline">Business &bull; Startups &bull; AI &bull; Innovation &bull; Finance</span>
+      </div>
+    </div>
+    <div class="menu-btn" id="menu-btn" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="header-row2">
+    <span class="header-date" id="header-date"></span>
+    <span class="header-founder">Founder: <a href="#" onclick="openModal('000');return false;">Oliyide Prosper</a></span>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="toggleDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-top">
+    <div class="drawer-logo"><span>TCT</span></div>
+    <span class="drawer-x" onclick="toggleDrawer()">&#10005;</span>
+  </div>
+  <div class="drawer-heading">CATEGORIES</div>
+  <div class="drawer-list">
+    <div class="drawer-item" onclick="filterBy('Business')"><span class="drawer-item-name">Business</span><span class="drawer-arrow">&#8594;</span></div>
+    <div class="drawer-item" onclick="filterBy('Startups')"><span class="drawer-item-name">Startups</span><span class="drawer-arrow">&#8594;</span></div>
+    <div class="drawer-item" onclick="filterBy('AI')"><span class="drawer-item-name">AI</span><span class="drawer-arrow">&#8594;</span></div>
+    <div class="drawer-item" onclick="filterBy('Innovation')"><span class="drawer-item-name">Innovation</span><span class="drawer-arrow">&#8594;</span></div>
+    <div class="drawer-item" onclick="filterBy('Finance')"><span class="drawer-item-name">Finance</span><span class="drawer-arrow">&#8594;</span></div>
+    <div class="drawer-item" onclick="filterBy('Founders')"><span class="drawer-item-name">Founders</span><span class="drawer-arrow">&#8594;</span></div>
+    <div class="drawer-item" onclick="filterBy('Technology')"><span class="drawer-item-name">Technology</span><span class="drawer-arrow">&#8594;</span></div>
+  </div>
+  <div class="drawer-foot"><p>Business &middot; Startups &middot; AI<br>Africa&rsquo;s Future</p></div>
+</div>
+
+<!-- TRENDING -->
+<div class="trending-bar">
+  <span class="trending-label">&#8599; Trending</span>
+  <div class="trending-items" id="trending-items"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero-section">
+  <div id="hero-container"></div>
+</div>
+
+<!-- ARTICLES -->
+<div class="articles-section">
+  <div class="articles-top">
+    <span class="articles-label">Latest</span>
+    <div class="filter-row" id="filter-row"></div>
+  </div>
+  <div id="art-list"></div>
+  <div class="load-more-wrap">
+    <button class="load-more-btn gone" id="load-more-btn" onclick="loadMore()">Load More &darr;</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section">
+  <div class="about-inner">
+    <div class="about-eye">About TCT</div>
+    <p class="about-quote">&ldquo;Africa&rsquo;s story deserves a sharper lens.&rdquo;</p>
+    <p class="about-desc">The Capital Table is an independent media platform covering business, startups, AI, and innovation across Africa &mdash; with a particular focus on Nigeria&rsquo;s founder ecosystem.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="site-footer">
+  <span class="foot-copy">&copy; 2026 The Capital Table. All rights reserved.</span>
+  <div class="foot-links">
+    <a class="foot-link" href="https://instagram.com/thecapitaltable" target="_blank">Instagram</a>
+    <a class="foot-link" href="https://x.com/thecapitaltable" target="_blank">X (Twitter)</a>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="handleBgClick(event)">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-prog-wrap">
+      <div class="modal-prog-bar" id="modal-prog-bar"></div>
+    </div>
+    <div class="modal-top-bar">
+      <div class="modal-pub-info">
+        <span class="modal-pub-name">The Capital Table</span>
+        <span class="modal-pub-sep">&middot;</span>
+        <span class="modal-pub-cat" id="modal-pub-cat"></span>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div class="modal-scroll" id="modal-scroll" onscroll="onModalScroll()">
+      <div class="modal-fade-t"></div>
+      <div id="modal-body"></div>
+      <div class="modal-fade-b"></div>
+    </div>
+    <div class="modal-actions">
+      <div class="modal-act-left">
+        <button class="act-btn" id="like-btn" onclick="toggleLike()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="like-txt">Like</span>
+        </button>
+        <button class="act-btn" id="share-btn" onclick="shareArt()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <span>Share</span>
+        </button>
+      </div>
+      <span class="modal-pct" id="modal-pct">0%</span>
+    </div>
+  </div>
+</div>
+
+<script>
+
+/* =====================
+   ARTICLES
+   =====================
+   HOW TO ADD AN ARTICLE:
+   1. Copy one article block
+   2. Change the fields
+   3. Set featured: true for hero, false for list
+   4. Upload image to images/ folder on GitHub
+   5. Update image field e.g. "images/your-image.jpg"
+*/
+
+var ARTS = [
+  {
+    id:"000",
+    title:"Meet the Builder: Oliyide Prosper, the Corps Member Turning Ideas Into Products",
+    subtitle:"A 22-year-old anatomy graduate, serving his country by day, building startups by night.",
+    category:"Founders",
+    author:"TCT Editorial",
+    date:"15th May, 2026",
+    readTime:"3 min read",
+    featured:true,
+    image:"https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=900&q=80",
+    hook:"Most people spend their NYSC year counting down the days. Oliyide Prosper spent his building three software products from a single Android phone in Abuja.",
+    sections:[
+      {h:"Who He Is", b:"Oliyide Prosper is a 22-year-old human anatomy graduate currently serving as a Youth Corps member at the National Hospital Abuja, posted to the Histopathology Department. Alongside two consultant pathologists, he processes tissue samples by day and writes code by night."},
+      {h:"What He Is Building", b:"Under the holding company framework he calls Oliyide Inc., Prosper is developing three products simultaneously: AltoCV, an AI-powered CV builder for Nigerian graduates; ProjectKit, a step-by-step project writing guide for final year students; and Lydia AI, an AI tool built on the Claude API. All three are being built entirely from his Android phone."},
+      {h:"The Vision", b:"The goal is 100 micro-products over time, each given 12 months to reach meaningful revenue or be retired. But Prosper is clear that entrepreneurship is a means, not an end. The destination is medicine — an MBBS at LAUTECH, a specialisation in pathology, and eventually a career as a consultant and researcher."}
+    ],
+    conclusion:"This is a test article for The Capital Table. Your real articles will replace this one."
+  },
+  {
+    id:"001",
+    title:"Introducing The Capital Table: A New Voice on African Business",
+    subtitle:"Africa's story deserves a sharper lens. We built one.",
+    category:"Editorial",
+    author:"TCT Editorial",
+    date:"14th May, 2026",
+    readTime:"4 min read",
+    featured:false,
+    image:"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
+    hook:"Every generation of African business needs a publication that speaks its language — not a translation of Western finance media, but something built from the ground up.",
+    sections:[
+      {h:"Why We Built This", b:"African business media has a problem. Most of it either talks down to its audience or reduces complex African economies to a single story of struggle and potential. The continent has venture-backed startups, world-class founders, and a generation of young professionals who understand capital, technology, and markets. They deserve a publication that matches their intelligence."},
+      {h:"What TCT Is", b:"A business and startup media platform focused on African markets — with a particular lens on Nigeria, where the density of entrepreneurial activity and tech adoption is unmatched on the continent."},
+      {h:"Who This Is For", b:"The ambitious Nigerian undergraduate trying to understand venture capital. The NYSC corps member building a product on the side. The Lagos founder raising a pre-seed round. If you care about business and this continent, you are exactly who we built this for."}
+    ],
+    conclusion:"Welcome to The Capital Table. Pull up a seat."
+  },
+  {
+    id:"002",
+    title:"Why Nigerian Students Are Turning to AI Tools in 2026",
+    subtitle:"Inside the quiet academic revolution on university campuses across Nigeria.",
+    category:"AI",
+    author:"TCT Editorial",
+    date:"14th May, 2026",
+    readTime:"6 min read",
+    featured:false,
+    image:"https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+    hook:"Walk into any cybercafe near a Nigerian university in 2026 and you will find students not browsing social media — but prompting AI tools to help them write, research, and build.",
+    sections:[
+      {h:"The Shift Nobody Announced", b:"There was no single moment when Nigerian students decided to adopt AI tools en masse. It happened gradually, then suddenly. ChatGPT arrived in 2022 as a curiosity. By 2026 it is infrastructure."},
+      {h:"Why It Is Happening", b:"Three forces converged: smartphone penetration, falling data prices, and the pressure to produce research-quality project work without adequate supervision."},
+      {h:"The Controversy", b:"Lecturers and department heads are divided. Some see AI-assisted work as plagiarism. Most institutions have no policy — leaving students in a grey zone."}
+    ],
+    conclusion:"AI adoption among Nigerian students is not a crisis. It is a signal that young Nigerians are resourceful and unwilling to be limited by the systems around them."
+  },
+  {
+    id:"003",
+    title:"The Rise of AI Startups in Nigeria",
+    subtitle:"Nigerian founders are building AI companies at an unprecedented pace.",
+    category:"Startups",
+    author:"TCT Editorial",
+    date:"14th May, 2026",
+    readTime:"7 min read",
+    featured:false,
+    image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80",
+    hook:"Three years ago, AI startup in Nigeria usually meant a chatbot. In 2026, the category has matured beyond recognition.",
+    sections:[
+      {h:"A New Class of Builder", b:"The current wave of Nigerian AI founders is younger, more technically literate, and building for both local and global markets from day one."},
+      {h:"What They Are Building", b:"AI tools for students. Assistants for small businesses in pidgin and local languages. Infrastructure — data pipelines and fine-tuned models for African contexts."},
+      {h:"The Challenges", b:"Compute costs in dollars, revenues in naira. Unreliable electricity. A talent pool that is growing but still shallow relative to the ambition of the products being built."}
+    ],
+    conclusion:"Nigerian AI is no longer a future story. The founders are here. The products are live. The question now is scale."
+  },
+  {
+    id:"004",
+    title:"ChatGPT vs Lydia AI: Which Tool Is Better for Nigerian Students?",
+    subtitle:"A direct comparison of the global giant and Nigeria's emerging academic AI.",
+    category:"AI",
+    author:"TCT Editorial",
+    date:"14th May, 2026",
+    readTime:"8 min read",
+    featured:false,
+    image:"https://images.unsplash.com/photo-1686191128892-3b37add4c844?w=600&q=80",
+    hook:"ChatGPT has 200 million users. Lydia AI has a fraction of that. But in the context of a Nigerian undergraduate with a final year project deadline, the comparison is more interesting than the numbers suggest.",
+    sections:[
+      {h:"What ChatGPT Does Well", b:"Broad knowledge, strong reasoning, natural conversation. For general research and first drafts across most academic disciplines, it remains powerful."},
+      {h:"Where It Falls Short", b:"Context. ChatGPT does not understand Nigerian university formatting. It cannot structure output the way Nigerian academic institutions demand without significant prompt engineering."},
+      {h:"What Lydia AI Is Built For", b:"Exactly the context ChatGPT misses — chapter-by-chapter project structure, local formatting conventions, the specific language register Nigerian projects require."}
+    ],
+    conclusion:"For general research: ChatGPT. For structured Nigerian academic project work: Lydia AI. The smart student uses both, strategically."
+  },
+  {
+    id:"005",
+    title:"How a Nigerian NYSC Corps Member Built an AI Startup on an Android Phone",
+    subtitle:"No laptop. No funding. Just a phone and a high tolerance for building under pressure.",
+    category:"Founders",
+    author:"TCT Editorial",
+    date:"14th May, 2026",
+    readTime:"9 min read",
+    featured:false,
+    image:"https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80",
+    hook:"The standard startup story involves a garage, a MacBook, and a college roommate. This one involves NYSC khaki, a Tecno phone, and a histopathology department in Abuja.",
+    sections:[
+      {h:"The Setup", b:"A 22-year-old anatomy graduate posted to the National Hospital Abuja, building three products simultaneously during his service year."},
+      {h:"The Stack", b:"GitHub for code. Render for hosting. Claude for writing most of the code. The founder prompts, reviews, pastes, pushes. A pipeline that would have been impossible five years ago."},
+      {h:"The Long Game", b:"100 micro-products. Each given 12 months to hit revenue or be retired. Financial independence first. Then medicine — MBBS, pathology, a consultant career."}
+    ],
+    conclusion:"The phone is not a limitation. It is the point. Building from where you are, with what you have, is not a consolation strategy. For this generation of African founders, it is simply the only strategy there has ever been."
+  }
+];
+
+/* =====================
+   STATE
+   ===================== */
+var BATCH = 6;
+var shown = 0;
+var activeList = [];
+var currentId = null;
+
+/* =====================
+   INIT
+   ===================== */
+window.onload = function() {
+  setDate();
+  renderTrending();
+  renderHero();
+  renderFilters();
+  showList(ARTS);
+};
+
+/* =====================
+   DATE
+   ===================== */
+function setDate() {
+  var el = document.getElementById('header-date');
+  if (!el) return;
+  var d = new Date();
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var day = d.getDate();
+  var sfx = ['th','st','nd','rd'];
+  var v = day % 100;
+  var s = sfx[(v-20)%10] || sfx[v] || sfx[0];
+  el.textContent = day + s + ' ' + months[d.getMonth()] + ', ' + d.getFullYear();
+}
+
+/* =====================
+   TRENDING
+   ===================== */
+function renderTrending() {
+  var el = document.getElementById('trending-items');
+  if (!el) return;
+  el.innerHTML = ARTS.slice(0,5).map(function(a) {
+    return '<span class="trending-item" onclick="openModal(\'' + a.id + '\')">' + a.title + '</span>';
+  }).join('');
+}
+
+/* =====================
+   HERO
+   ===================== */
+function renderHero() {
+  var el = document.getElementById('hero-container');
+  if (!el) return;
+  var art = null;
+  for (var i = 0; i < ARTS.length; i++) { if (ARTS[i].featured) { art = ARTS[i]; break; } }
+  if (!art) return;
+  el.innerHTML =
+    '<div class="hero-inner" onclick="openModal(\'' + art.id + '\')">' +
+      '<div class="hero-cat">' + art.category + '</div>' +
+      '<h1 class="hero-title">' + art.title + '</h1>' +
+      '<p class="hero-sub">' + art.subtitle + '</p>' +
+      '<div class="hero-meta">' +
+        '<span>' + art.author + '</span>' +
+        '<span class="hero-meta-dot"></span>' +
+        '<span>' + art.date + '</span>' +
+        '<span class="hero-meta-dot"></span>' +
+        '<span>' + art.readTime + '</span>' +
+      '</div>' +
+      '<img class="hero-img" src="' + art.image + '" alt="' + art.title + '" loading="eager">' +
+      '<div class="hero-cat-below">' + art.category + '</div>' +
+    '</div>';
+}
+
+/* =====================
+   FILTERS
+   ===================== */
+function renderFilters() {
+  var el = document.getElementById('filter-row');
+  if (!el) return;
+  var cats = ['All'];
+  ARTS.forEach(function(a) { if (cats.indexOf(a.category) < 0) cats.push(a.category); });
+  el.innerHTML = cats.map(function(c) {
+    return '<button class="f-btn' + (c==='All'?' on':'') + '" onclick="filterBy(\'' + c + '\')">' + c + '</button>';
+  }).join('');
+}
+
+function filterBy(cat) {
+  if (document.getElementById('drawer').classList.contains('show')) toggleDrawer();
+  document.querySelectorAll('.f-btn').forEach(function(b) { b.classList.toggle('on', b.textContent === cat); });
+  var list = cat === 'All' ? ARTS : ARTS.filter(function(a) { return a.category === cat; });
+  showList(list);
+  var sec = document.querySelector('.articles-section');
+  if (sec) window.scrollTo({ top: sec.offsetTop - 10, behavior: 'smooth' });
+}
+
+/* =====================
+   ARTICLE LIST
+   ===================== */
+function showList(list) {
+  activeList = list;
+  shown = 0;
+  document.getElementById('art-list').innerHTML = '';
+  appendBatch();
+}
+
+function appendBatch() {
+  var el = document.getElementById('art-list');
+  var end = Math.min(shown + BATCH, activeList.length);
+  for (var i = shown; i < end; i++) {
+    var a = activeList[i];
+    var div = document.createElement('div');
+    div.className = 'art-item';
+    div.setAttribute('onclick', 'openModal("' + a.id + '")');
+    div.innerHTML =
+      '<img class="art-thumb" src="' + a.image + '" alt="' + a.title + '" loading="lazy">' +
+      '<div class="art-right">' +
+        '<div class="art-cat">' + a.category + '</div>' +
+        '<div class="art-title">' + a.title + '</div>' +
+        '<p class="art-excerpt">' + a.subtitle + '</p>' +
+        '<div class="art-date">' + a.date + ' &middot; ' + a.readTime + '</div>' +
+      '</div>';
+    el.appendChild(div);
+  }
+  shown = end;
+  var btn = document.getElementById('load-more-btn');
+  if (btn) btn.classList.toggle('gone', shown >= activeList.length);
+}
+
+function loadMore() { appendBatch(); }
+
+/* =====================
+   DRAWER
+   ===================== */
+function toggleDrawer() {
+  var btn = document.getElementById('menu-btn');
+  var dr  = document.getElementById('drawer');
+  var ov  = document.getElementById('drawer-overlay');
+  var open = dr.classList.contains('show');
+  btn.classList.toggle('open', !open);
+  dr.classList.toggle('show', !open);
+  ov.classList.toggle('show', !open);
+  document.body.style.overflow = open ? '' : 'hidden';
+}
+
+/* =====================
+   MODAL
+   ===================== */
+function openModal(id) {
+  var a = null;
+  for (var i = 0; i < ARTS.length; i++) { if (ARTS[i].id === id) { a = ARTS[i]; break; } }
+  if (!a) return;
+  currentId = id;
+
+  document.getElementById('modal-pub-cat').textContent = a.category;
+
+  var sects = a.sections.map(function(s) {
+    return '<div class="m-section"><div class="m-sec-head">' + s.h + '</div><p class="m-sec-body">' + s.b + '</p></div>';
+  }).join('');
+  document.getElementById('modal-body').innerHTML =
+    '<div class="modal-article">' +
+      '<div class="m-cat">' + a.category + '</div>' +
+      '<h2 class="m-title">' + a.title + '</h2>' +
+      '<p class="m-subtitle">' + a.subtitle + '</p>' +
+      '<div class="m-meta"><span>' + a.author + '</span><span class="m-meta-dot"></span><span>' + a.date + '</span><span class="m-meta-dot"></span><span>' + a.readTime + '</span></div>' +
+      '<div class="m-hook">' + a.hook + '</div>' +
+      sects +
+      (a.conclusion ? '<div class="m-end">' + a.conclusion + '</div>' : '') +
+    '</div>';
+
+  var liked = getLike(id);
+  document.getElementById('like-btn').classList.toggle('liked', liked);
+  document.getElementById('like-txt').textContent = liked ? 'Liked' : 'Like';
+
+  var sc = document.getElementById('modal-scroll');
+  sc.scrollTop = 0;
+  document.getElementById('modal-prog-bar').style.width = '0%';
+  document.getElementById('modal-pct').textContent = '0%';
+
+  document.getElementById('modal-bg').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-bg').classList.remove('show');
+  document.body.style.overflow = '';
+  currentId = null;
+}
+
+function handleBgClick(e) {
+  if (e.target === document.getElementById('modal-bg')) closeModal();
+}
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+function onModalScroll() {
+  var sc = document.getElementById('modal-scroll');
+  var s  = sc.scrollHeight - sc.clientHeight;
+  var p  = s > 0 ? Math.round((sc.scrollTop / s) * 100) : 0;
+  document.getElementById('modal-prog-bar').style.width = p + '%';
+  document.getElementById('modal-pct').textContent = p + '%';
+}
+
+/* =====================
+   LIKE
+   ===================== */
+function getLike(id) {
+  try { return !!JSON.parse(localStorage.getItem('tct_likes')||'{}')[id]; } catch(e) { return false; }
+}
+function toggleLike() {
+  if (!currentId) return;
+  try {
+    var l = JSON.parse(localStorage.getItem('tct_likes')||'{}');
+    l[currentId] = !l[currentId];
+    localStorage.setItem('tct_likes', JSON.stringify(l));
+    document.getElementById('like-btn').classList.toggle('liked', l[currentId]);
+    document.getElementById('like-txt').textContent = l[currentId] ? 'Liked' : 'Like';
+  } catch(e) {}
+}
+
+/* =====================
+   SHARE
+   ===================== */
+function shareArt() {
+  var a = null;
+  for (var i = 0; i < ARTS.length; i++) { if (ARTS[i].id === currentId) { a = ARTS[i]; break; } }
+  if (!a) return;
+  if (navigator.share) {
+    navigator.share({ title: a.title, text: a.subtitle, url: 'https://thecapitaltable.blog' });
+  } else {
+    navigator.clipboard.writeText('https://thecapitaltable.blog').then(function() {
+      var b = document.getElementById('share-btn');
+      var o = b.innerHTML;
+      b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:13px;height:13px;stroke-width:2"><polyline points="20,6 9,17 4,12"/></svg><span>Copied!</span>';
+      setTimeout(function(){ b.innerHTML = o; }, 2000);
+    });
+  }
+}
+
+</script>
+</body>
+</html>
